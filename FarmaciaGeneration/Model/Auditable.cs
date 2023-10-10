@@ -1,4 +1,4 @@
-﻿namespace BlogPessoal.Model
+﻿namespace FarmaciaGeneration.Model
 {
     public class Auditable
     {

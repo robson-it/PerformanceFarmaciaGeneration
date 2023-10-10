@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Security.AccessControl;
-using BlogPessoal.Model;
+using FarmaciaGeneration.Model;
 
 namespace FarmaciaGeneration.Model
 {

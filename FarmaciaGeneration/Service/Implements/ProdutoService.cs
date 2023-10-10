@@ -16,7 +16,9 @@ namespace FarmaciaGeneration.Service.Implements
         public async Task<IEnumerable<Produto>> GetAll()
         {
             return await _context.Produtos
-                .Include(c => c.Categoria).ToListAsync();
+                .Include(c => c.Categoria)
+                .Include(u => u.Usuario)
+                .ToListAsync();
         }
 
         public async Task<Produto?> GetById(long id)
@@ -75,7 +77,7 @@ namespace FarmaciaGeneration.Service.Implements
 
             
             produto.Categoria = produto.Categoria is not null ? _context.Categorias.FirstOrDefault(t => t.Id == produto.Categoria.Id) : null;
-           
+            produto.Usuario = produto.Usuario is not null ? await _context.Users.FirstOrDefaultAsync(u => u.Id == produto.Usuario.Id) : null;
 
 
             _context.Entry(ProdutoUpdate).State = EntityState.Detached;
@@ -97,7 +99,7 @@ namespace FarmaciaGeneration.Service.Implements
             }
 
             produto.Categoria = produto.Categoria is not null ? _context.Categorias.FirstOrDefault(t => t.Id == produto.Categoria.Id) : null;
-            
+            produto.Usuario = produto.Usuario is not null ? await _context.Users.FirstOrDefaultAsync(u => u.Id == produto.Usuario.Id) : null;
 
             await _context.Produtos.AddAsync(produto);
             await _context.SaveChangesAsync();

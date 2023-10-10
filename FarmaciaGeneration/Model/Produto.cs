@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using BlogPessoal.Model;
+using FarmaciaGeneration.Model;
 
 namespace FarmaciaGeneration.Model
 {
@@ -28,5 +28,6 @@ namespace FarmaciaGeneration.Model
         public string Foto { get; set; } = string.Empty;
 
         public virtual Categoria? Categoria { get; set; }
+        public virtual User? Usuario { get; set; }
     }
 }

@@ -79,3 +79,5 @@ C:\Users\Robson\Documents\GenerationProjetos\PerformanceFarmaciaGeneration\Farma
 C:\Users\Robson\Documents\GenerationProjetos\PerformanceFarmaciaGeneration\FarmaciaGeneration\obj\Debug\net7.0\FarmaciaGeneration.pdb
 C:\Users\Robson\Documents\GenerationProjetos\PerformanceFarmaciaGeneration\FarmaciaGeneration\obj\Debug\net7.0\FarmaciaGeneration.genruntimeconfig.cache
 C:\Users\Robson\Documents\GenerationProjetos\PerformanceFarmaciaGeneration\FarmaciaGeneration\obj\Debug\net7.0\ref\FarmaciaGeneration.dll
+C:\Users\Robson\Documents\GenerationProjetos\PerformanceFarmaciaGeneration\FarmaciaGeneration\bin\Debug\net7.0\BCrypt.Net-Core.dll
+C:\Users\Robson\Documents\GenerationProjetos\PerformanceFarmaciaGeneration\FarmaciaGeneration\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

@@ -2,10 +2,13 @@
 using FarmaciaGeneration.Service;
 using FarmaciaGeneration.Service.Implements;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 
 namespace FarmaciaGeneration.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("~/categorias")]
     public class CategoriaController : ControllerBase
@@ -58,6 +61,36 @@ namespace FarmaciaGeneration.Controllers
             await _categoriaService.Create(categoria);
             return CreatedAtAction(nameof(GetById), new { id = categoria.Id }, categoria);
         }
+
+
+        [HttpPost("cadastrarLista")]
+        public async Task<ActionResult> CreateList([FromBody] ICollection<Categoria> categorias)
+        {
+
+            var itens = "";
+            foreach (var categoria in categorias)
+            {
+                var ValidarCategoria = await _categoriaValidator.ValidateAsync(categoria);
+                if (!ValidarCategoria.IsValid)
+                {
+                    
+                    itens += "\n A Categoria: " + categoria.Tipo + " não é válida! Erro: " + ValidarCategoria;
+                    continue;
+                }
+                await _categoriaService.Create(categoria);
+
+
+                itens += "\n A Categoria: " + categoria.Tipo + " foi cadastrada com sucesso!\n"
+                   + "[INFO] => \n "
+                   + "Id:" + categoria.Id + "\n"
+                   + "Nome:" + categoria.Tipo + "\n";
+
+            }
+
+            return Ok(itens);
+
+        }
+
 
         [HttpPut]
         public async Task<ActionResult> Update([FromBody] Categoria categoria)

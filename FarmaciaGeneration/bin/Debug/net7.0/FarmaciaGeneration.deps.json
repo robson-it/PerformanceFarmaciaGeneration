@@ -8,9 +8,11 @@
     ".NETCoreApp,Version=v7.0": {
       "FarmaciaGeneration/1.0.0": {
         "dependencies": {
+          "BCrypt.Net-Core": "1.6.0",
           "FluentValidation": "11.7.1",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.12",
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "7.0.11",
-          "Microsoft.AspNetCore.OpenApi": "7.0.9",
+          "Microsoft.AspNetCore.OpenApi": "7.0.12",
           "Microsoft.EntityFrameworkCore": "7.0.11",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.11",
           "Microsoft.EntityFrameworkCore.Tools": "7.0.11",
@@ -54,6 +56,14 @@
           }
         }
       },
+      "BCrypt.Net-Core/1.6.0": {
+        "runtime": {
+          "lib/netstandard2.0/BCrypt.Net-Core.dll": {
+            "assemblyVersion": "1.6.0.0",
+            "fileVersion": "1.6.0.0"
+          }
+        }
+      },
       "FluentValidation/11.7.1": {
         "runtime": {
           "lib/net7.0/FluentValidation.dll": {
@@ -67,6 +77,17 @@
           "lib/net6.0/Humanizer.dll": {
             "assemblyVersion": "2.14.0.0",
             "fileVersion": "2.14.1.48190"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.12": {
+        "dependencies": {
+          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.24.0"
+        },
+        "runtime": {
+          "lib/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {
+            "assemblyVersion": "7.0.12.0",
+            "fileVersion": "7.0.1223.47922"
           }
         }
       },
@@ -95,14 +116,14 @@
           }
         }
       },
-      "Microsoft.AspNetCore.OpenApi/7.0.9": {
+      "Microsoft.AspNetCore.OpenApi/7.0.12": {
         "dependencies": {
           "Microsoft.OpenApi": "1.4.3"
         },
         "runtime": {
           "lib/net7.0/Microsoft.AspNetCore.OpenApi.dll": {
-            "assemblyVersion": "7.0.9.0",
-            "fileVersion": "7.0.923.32110"
+            "assemblyVersion": "7.0.12.0",
+            "fileVersion": "7.0.1223.47922"
           }
         }
       },
@@ -689,6 +710,13 @@
       "path": "azure.identity/1.7.0",
       "hashPath": "azure.identity.1.7.0.nupkg.sha512"
     },
+    "BCrypt.Net-Core/1.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-hsKiHGjrnlDW05MzuzzlD9gNP8YOW2KbZ+FbvISrilsKJJ76tXKhWey6psZX5sd7DczNpSU2U6ldjPoblk8BLw==",
+      "path": "bcrypt.net-core/1.6.0",
+      "hashPath": "bcrypt.net-core.1.6.0.nupkg.sha512"
+    },
     "FluentValidation/11.7.1": {
       "type": "package",
       "serviceable": true,
@@ -702,6 +730,13 @@
       "sha512": "sha512-lQKvtaTDOXnoVJ20ibTuSIOf2i0uO0MPbDhd1jm238I+U/2ZnRENj0cktKZhtchBMtCUSRQ5v4xBCUbKNmyVMw==",
       "path": "humanizer.core/2.14.1",
       "hashPath": "humanizer.core.2.14.1.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.12": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-KlSupL6h5oUwjMAoNJO2vp0MrqGYeO6nfdGjAEriK8xUccQndmQW9zQwF7d1R80abrZD/T9b01hmhk3v3LX05g==",
+      "path": "microsoft.aspnetcore.authentication.jwtbearer/7.0.12",
+      "hashPath": "microsoft.aspnetcore.authentication.jwtbearer.7.0.12.nupkg.sha512"
     },
     "Microsoft.AspNetCore.JsonPatch/7.0.11": {
       "type": "package",
@@ -717,12 +752,12 @@
       "path": "microsoft.aspnetcore.mvc.newtonsoftjson/7.0.11",
       "hashPath": "microsoft.aspnetcore.mvc.newtonsoftjson.7.0.11.nupkg.sha512"
     },
-    "Microsoft.AspNetCore.OpenApi/7.0.9": {
+    "Microsoft.AspNetCore.OpenApi/7.0.12": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-5kBnHntQTJqmYV66Khdl9OJ/j2Pw8cOKj8kNQuLCpfCsPbSijp334Vaad3vaGnG9Wpgq/VbSUSRxZOoroOe8zQ==",
-      "path": "microsoft.aspnetcore.openapi/7.0.9",
-      "hashPath": "microsoft.aspnetcore.openapi.7.0.9.nupkg.sha512"
+      "sha512": "sha512-KWfmBcvglieWin4srGSPiREh8/8+qCJpME9MPbsN2OVOwKkMXKta2K82Xk0BcZrZCk9tftMBO6qYfJgz0goQpg==",
+      "path": "microsoft.aspnetcore.openapi/7.0.12",
+      "hashPath": "microsoft.aspnetcore.openapi.7.0.12.nupkg.sha512"
     },
     "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
       "type": "package",

@@ -6,6 +6,11 @@ using FarmaciaGeneration.Service;
 using FarmaciaGeneration.Validator;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using FarmaciaGeneration.Security.Implements;
+using FarmaciaGeneration.Security;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace FarmaciaGeneration
 {
@@ -31,10 +36,32 @@ namespace FarmaciaGeneration
 
             builder.Services.AddTransient<IValidator<Produto>, ProdutoValidator>();
             builder.Services.AddTransient<IValidator<Categoria>, CategoriaValidator>();
+            builder.Services.AddTransient<IValidator<User>, UserValidator>();
 
             builder.Services.AddScoped<IProdutoService, ProdutoService>();
             builder.Services.AddScoped<ICategoriaService, CategoriaService>();
+            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddTransient<IAuthService, AuthService>();
 
+
+
+            builder.Services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(o =>
+            {
+                var Key = Encoding.UTF8.GetBytes(Settings.Secret);
+                o.SaveToken = true;
+                o.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Key)
+                };
+            });
             // Add services to the container.
 
             builder.Services.AddControllers();
@@ -66,8 +93,9 @@ namespace FarmaciaGeneration
 
             app.UseCors("MyPolice");
 
-            app.UseAuthorization();
+            app.UseAuthentication();
 
+            app.UseAuthorization();
 
             app.MapControllers();
 

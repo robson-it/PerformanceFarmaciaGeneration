@@ -46,6 +46,19 @@
           }
         }
       },
+      "BCrypt.Net-Core/1.6.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/BCrypt.Net-Core.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/BCrypt.Net-Core.dll": {
+            "related": ".pdb"
+          }
+        }
+      },
       "FluentValidation/11.7.1": {
         "type": "package",
         "compile": {
@@ -71,6 +84,25 @@
             "related": ".xml"
           }
         }
+      },
+      "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.12": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.15.1"
+        },
+        "compile": {
+          "lib/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "Microsoft.AspNetCore.JsonPatch/7.0.11": {
         "type": "package",
@@ -110,7 +142,7 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "Microsoft.AspNetCore.OpenApi/7.0.9": {
+      "Microsoft.AspNetCore.OpenApi/7.0.12": {
         "type": "package",
         "dependencies": {
           "Microsoft.OpenApi": "1.4.3"
@@ -1281,6 +1313,29 @@
         "lib/netstandard2.0/Azure.Identity.xml"
       ]
     },
+    "BCrypt.Net-Core/1.6.0": {
+      "sha512": "hsKiHGjrnlDW05MzuzzlD9gNP8YOW2KbZ+FbvISrilsKJJ76tXKhWey6psZX5sd7DczNpSU2U6ldjPoblk8BLw==",
+      "type": "package",
+      "path": "bcrypt.net-core/1.6.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "bcrypt.net-core.1.6.0.nupkg.sha512",
+        "bcrypt.net-core.nuspec",
+        "lib/net40/BCrypt.Net-Core.dll",
+        "lib/net40/BCrypt.Net-Core.pdb",
+        "lib/net45/BCrypt.Net-Core.dll",
+        "lib/net45/BCrypt.Net-Core.pdb",
+        "lib/net451/BCrypt.Net-Core.dll",
+        "lib/net451/BCrypt.Net-Core.pdb",
+        "lib/net452/BCrypt.Net-Core.dll",
+        "lib/net452/BCrypt.Net-Core.pdb",
+        "lib/netstandard1.3/BCrypt.Net-Core.dll",
+        "lib/netstandard1.3/BCrypt.Net-Core.pdb",
+        "lib/netstandard2.0/BCrypt.Net-Core.dll",
+        "lib/netstandard2.0/BCrypt.Net-Core.pdb"
+      ]
+    },
     "FluentValidation/11.7.1": {
       "sha512": "w9Al4gls6iVGFbTd/NPOPlwzqDTghH+ntL4c4FYUatc+LeybpIwhYArLykZJP/VjF2n3ihj3ws+1yd7KR5lQlg==",
       "type": "package",
@@ -1322,6 +1377,21 @@
         "logo.png"
       ]
     },
+    "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.12": {
+      "sha512": "KlSupL6h5oUwjMAoNJO2vp0MrqGYeO6nfdGjAEriK8xUccQndmQW9zQwF7d1R80abrZD/T9b01hmhk3v3LX05g==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.authentication.jwtbearer/7.0.12",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll",
+        "lib/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.xml",
+        "microsoft.aspnetcore.authentication.jwtbearer.7.0.12.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.jwtbearer.nuspec"
+      ]
+    },
     "Microsoft.AspNetCore.JsonPatch/7.0.11": {
       "sha512": "i3TITRzWt92b5NV30jRmPLpMW3XkUKwtiTMZlglYkfYxEtfD30Q2/1APIwmHNEd3DbGg3+9sGQFK0MA0KO9koQ==",
       "type": "package",
@@ -1356,10 +1426,10 @@
         "microsoft.aspnetcore.mvc.newtonsoftjson.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.OpenApi/7.0.9": {
-      "sha512": "5kBnHntQTJqmYV66Khdl9OJ/j2Pw8cOKj8kNQuLCpfCsPbSijp334Vaad3vaGnG9Wpgq/VbSUSRxZOoroOe8zQ==",
+    "Microsoft.AspNetCore.OpenApi/7.0.12": {
+      "sha512": "KWfmBcvglieWin4srGSPiREh8/8+qCJpME9MPbsN2OVOwKkMXKta2K82Xk0BcZrZCk9tftMBO6qYfJgz0goQpg==",
       "type": "package",
-      "path": "microsoft.aspnetcore.openapi/7.0.9",
+      "path": "microsoft.aspnetcore.openapi/7.0.12",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1367,7 +1437,7 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net7.0/Microsoft.AspNetCore.OpenApi.dll",
         "lib/net7.0/Microsoft.AspNetCore.OpenApi.xml",
-        "microsoft.aspnetcore.openapi.7.0.9.nupkg.sha512",
+        "microsoft.aspnetcore.openapi.7.0.12.nupkg.sha512",
         "microsoft.aspnetcore.openapi.nuspec"
       ]
     },
@@ -3521,9 +3591,11 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "BCrypt.Net-Core >= 1.6.0",
       "FluentValidation >= 11.7.1",
+      "Microsoft.AspNetCore.Authentication.JwtBearer >= 7.0.12",
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 7.0.11",
-      "Microsoft.AspNetCore.OpenApi >= 7.0.9",
+      "Microsoft.AspNetCore.OpenApi >= 7.0.12",
       "Microsoft.EntityFrameworkCore >= 7.0.11",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.11",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.11",
@@ -3574,9 +3646,17 @@
       "net7.0": {
         "targetAlias": "net7.0",
         "dependencies": {
+          "BCrypt.Net-Core": {
+            "target": "Package",
+            "version": "[1.6.0, )"
+          },
           "FluentValidation": {
             "target": "Package",
             "version": "[11.7.1, )"
+          },
+          "Microsoft.AspNetCore.Authentication.JwtBearer": {
+            "target": "Package",
+            "version": "[7.0.12, )"
           },
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
             "target": "Package",
@@ -3584,7 +3664,7 @@
           },
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
-            "version": "[7.0.9, )"
+            "version": "[7.0.12, )"
           },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
