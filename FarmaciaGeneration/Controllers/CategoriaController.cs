@@ -67,27 +67,31 @@ namespace FarmaciaGeneration.Controllers
         public async Task<ActionResult> CreateList([FromBody] ICollection<Categoria> categorias)
         {
 
-            var itens = "";
+            var itens = "{\"Categorias\" : [";
             foreach (var categoria in categorias)
             {
                 var ValidarCategoria = await _categoriaValidator.ValidateAsync(categoria);
                 if (!ValidarCategoria.IsValid)
                 {
                     
-                    itens += "\n A Categoria: " + categoria.Tipo + " não é válida! Erro: " + ValidarCategoria;
+                    itens += " {\"A Categoria " + categoria.Tipo + " não é válida! Erro: \" : \"" + ValidarCategoria +"\"},";
                     continue;
                 }
                 await _categoriaService.Create(categoria);
 
 
-                itens += "\n A Categoria: " + categoria.Tipo + " foi cadastrada com sucesso!\n"
-                   + "[INFO] => \n "
-                   + "Id:" + categoria.Id + "\n"
-                   + "Nome:" + categoria.Tipo + "\n";
+                itens += 
+                    //"\n A Categoria: " + categoria.Tipo + " foi cadastrada com sucesso!\n"
+                   //+ "[INFO] => \n "
+                    "{\"Id\" : \"" + categoria.Id + "\","
+                   + "\"Nome\" : \"" + categoria.Tipo + "\"},";
+                //str = "{ "context_name": { "lower_bound": "value", "upper_bound": "value", "values": [ "value1", "valueN" ] } }"
+
 
             }
-
-            return Ok(itens);
+            itens += "]}";
+            JObject json = JObject.Parse(itens);
+            return Ok(json);
 
         }
 

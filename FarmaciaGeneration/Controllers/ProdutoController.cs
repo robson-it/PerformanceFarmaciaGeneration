@@ -3,6 +3,7 @@ using FarmaciaGeneration.Service;
 using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 
 namespace FarmaciaGeneration.Controllers
 {
@@ -77,38 +78,39 @@ namespace FarmaciaGeneration.Controllers
         [HttpPost("cadastrarLista")]
         public async Task<ActionResult> CreateList([FromBody] ICollection<Produto> produtos)
         {
-            var itens = "";
+            var itens = "{\"Produtos\" : [";
             foreach (var produto in produtos)
             {
                 var ValidarProduto = await _produtoValidator.ValidateAsync(produto);
                 if (!ValidarProduto.IsValid)
                 {
-                    //return StatusCode(StatusCodes.Status400BadRequest, ValidarProduto);
-                    itens += "\n O Produto: " + produto.Nome + " não é válido! Erro: " + ValidarProduto;
+                    
+                    itens += "{\" O Produto " + produto.Nome + " não é válido! Erro \" : \"" + ValidarProduto + "\"},";
                     continue;
                 }
                 var Resposta = await _produtoService.Create(produto);
 
                 if (Resposta is null)
                 {
-                    //return BadRequest("Categoria não encontrada!");
-                    itens += "\n A categoria do Produto: " + produto.Nome + " não foi encontrada! Erro: " + ValidarProduto;
+                    
+                    itens += "{\" A categoria do Produto " + produto.Nome + " não foi encontrada! Erro \" : \"" + ValidarProduto + "\"},";
                     continue;
 
                 }
 
-                //return CreatedAtAction(nameof(GetById), new { id = produto.Id }, produto);
-                itens += "\n O Produto: " + produto.Nome + " foi cadastrado com sucesso!\n"
-                    + "[INFO] => \n "
-                    + "Id:" + produto.Id + "\n"
-                    + "Nome:" + produto.Nome + "\n"
-                    + "Descrição:" + produto.Descricao + "\n"
-                    + "Preço:" + produto.Preco + "\n"
-                    + "Imagem do Produto:" + produto.Foto + "\n"
-                    + "Categoria:" + produto.Categoria.Tipo + "\n"
-                    + "Usuário que Cadastrou:" + produto.Usuario.Nome + "\n";
+                
+                itens += 
+                     "{\" Id \" : \"" + produto.Id + "\","
+                    + "\" Nome \" : \"" + produto.Nome + "\","
+                    + "\" Descrição \" : \"" + produto.Descricao + "\","
+                    + "\" Preço \" : \"" + produto.Preco + "\","
+                    + "\" Imagem do Produto \" : \"" + produto.Foto + "\","
+                    + "\" Categoria \" : \"" + produto.Categoria.Tipo + "\","
+                    + "\" Usuário que Cadastrou \" : \"" + produto.Usuario.Nome + "\"},";
             }
-            return Ok(itens);
+            itens += "]}";
+            JObject json = JObject.Parse(itens);
+            return Ok(json);
         }
 
 
