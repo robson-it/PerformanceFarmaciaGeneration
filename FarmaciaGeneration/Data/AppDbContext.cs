@@ -12,12 +12,11 @@ namespace FarmaciaGeneration.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            modelBuilder.Entity<Produto>().ToTable("TB_PPRODUTOS");
 
         }
 
-
-
+        public DbSet<Produto> Produtos { get; set; } = null!;
 
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
@@ -26,13 +25,13 @@ namespace FarmaciaGeneration.Data
                                    .Where(x => x.State == EntityState.Added)
                                    .Select(x => x.Entity);
 
-           
+
 
             var modifiedEntries = ChangeTracker.Entries()
                        .Where(x => x.State == EntityState.Modified)
                        .Select(x => x.Entity);
 
-           
+
 
             return base.SaveChangesAsync(cancellationToken);
         }

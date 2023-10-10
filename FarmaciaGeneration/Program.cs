@@ -1,5 +1,10 @@
 
 using FarmaciaGeneration.Data;
+using FarmaciaGeneration.Model;
+using FarmaciaGeneration.Service.Implements;
+using FarmaciaGeneration.Service;
+using FarmaciaGeneration.Validator;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 
 namespace FarmaciaGeneration
@@ -23,6 +28,10 @@ namespace FarmaciaGeneration
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(connectionString)
             );
+
+            builder.Services.AddTransient<IValidator<Produto>, ProdutoValidator>();
+
+            builder.Services.AddScoped<IProdutoService, ProdutoService>();
 
             // Add services to the container.
 
