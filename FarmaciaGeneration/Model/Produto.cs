@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using BlogPessoal.Model;
 
 namespace FarmaciaGeneration.Model
 {
-    public class Produto
+    public class Produto : Auditable
     {
 
         [Key] // Primary Key Id
@@ -26,5 +27,6 @@ namespace FarmaciaGeneration.Model
         [StringLength(450)]
         public string Foto { get; set; } = string.Empty;
 
+        public virtual Categoria? Categoria { get; set; }
     }
 }

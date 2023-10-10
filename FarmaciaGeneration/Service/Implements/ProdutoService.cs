@@ -16,7 +16,7 @@ namespace FarmaciaGeneration.Service.Implements
         public async Task<IEnumerable<Produto>> GetAll()
         {
             return await _context.Produtos
-               .ToListAsync();
+                .Include(c => c.Categoria).ToListAsync();
         }
 
         public async Task<Produto?> GetById(long id)
@@ -24,6 +24,7 @@ namespace FarmaciaGeneration.Service.Implements
             try
             {
                 var Produto = await _context.Produtos
+                    .Include(c => c.Categoria)
                     .FirstAsync(i => i.Id == id);
                 return Produto;
             }
@@ -37,6 +38,7 @@ namespace FarmaciaGeneration.Service.Implements
         {
 
             var Produtos = await _context.Produtos
+                            .Include(c => c.Categoria)
                             .Where(p => p.Preco >= precoInicial && p.Preco <= precoFinal)
                             .ToListAsync();
 
@@ -46,6 +48,7 @@ namespace FarmaciaGeneration.Service.Implements
         public async Task<IEnumerable<Produto>> GetByNome(string nome)
         {
             var Produtos = await _context.Produtos
+                            .Include(c => c.Categoria)
                             .Where(p => p.Nome.Contains(nome))
                             .ToListAsync();
 
@@ -60,6 +63,20 @@ namespace FarmaciaGeneration.Service.Implements
                 return null;
             }
 
+            if (produto.Categoria is not null)
+            {
+                var BuscaCategoria = await _context.Categorias.FindAsync(produto.Categoria.Id);
+
+                if (BuscaCategoria is null)
+                {
+                    return null;
+                }
+            }
+
+            
+            produto.Categoria = produto.Categoria is not null ? _context.Categorias.FirstOrDefault(t => t.Id == produto.Categoria.Id) : null;
+           
+
 
             _context.Entry(ProdutoUpdate).State = EntityState.Detached;
             _context.Entry(produto).State = EntityState.Modified;
@@ -69,7 +86,19 @@ namespace FarmaciaGeneration.Service.Implements
 
         public async Task<Produto?> Create(Produto produto)
         {
-           
+            if (produto.Categoria is not null)
+            {
+                var BuscaCategoria = await _context.Categorias.FindAsync(produto.Categoria.Id);
+
+                if (BuscaCategoria is null)
+                {
+                    return null;
+                }
+            }
+
+            produto.Categoria = produto.Categoria is not null ? _context.Categorias.FirstOrDefault(t => t.Id == produto.Categoria.Id) : null;
+            
+
             await _context.Produtos.AddAsync(produto);
             await _context.SaveChangesAsync();
             return produto;
